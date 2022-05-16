@@ -1,0 +1,2 @@
+#Crear componentes 
+ ng g c components/inicio
