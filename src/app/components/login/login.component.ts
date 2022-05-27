@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.token);
-
+    //***Se verifica si el usuario ya inicio sesión a traves de su token */
     if (this.token) {
       this._router.navigate(['/']);
     }

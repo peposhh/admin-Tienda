@@ -1,2 +1,6 @@
 #Crear componentes 
  ng g c components/inicio
+
+
+ #para decifrar jwt
+ npm i @auth0/angular-jwt
