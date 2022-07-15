@@ -12,8 +12,9 @@ export class IndexClienteComponent implements OnInit {
   public clientes: Array<any> = [];
   public filtro_apellidos: Array<any> = [];
   public filtro_correo: Array<any> = [];
+  public filtro_rut: Array<any> = [];
   public page = 1
-  public pageSize = 3;
+  public pageSize = 5;
 
 
 
@@ -31,7 +32,7 @@ export class IndexClienteComponent implements OnInit {
 
 
   data_init() {
-    this._clienteService.listar_clente_filtro_admin(null, null)
+    this._clienteService.listar_cliente_filtro_admin(null, null)
       .subscribe(
         {
           next: response => {
@@ -59,7 +60,7 @@ export class IndexClienteComponent implements OnInit {
 
 
     if (tipo == 'apellidos') {
-      this._clienteService.listar_clente_filtro_admin(tipo, this.filtro_apellidos).
+      this._clienteService.listar_cliente_filtro_admin(tipo, this.filtro_apellidos).
         subscribe(
           {
             next: response => {
@@ -72,7 +73,22 @@ export class IndexClienteComponent implements OnInit {
           }
         )
     } else if (tipo == 'correo') {
-      this._clienteService.listar_clente_filtro_admin(tipo, this.filtro_correo).
+      this._clienteService.listar_cliente_filtro_admin(tipo, this.filtro_correo).
+        subscribe(
+          {
+            next: response => {
+              this.clientes = response.data;
+              console.log(this.clientes);
+            },
+            error: err => {
+              console.log(err.error.msg);
+            }
+          }
+        )
+    }
+
+    else if (tipo == 'rut') {
+      this._clienteService.listar_cliente_filtro_admin(tipo, this.filtro_rut).
         subscribe(
           {
             next: response => {

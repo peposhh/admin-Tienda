@@ -28,6 +28,14 @@
                     [(ngModel)]="filtro_correo" placeholder="Correo">
             </div>
 
+            <div class="input-group mb-3 mr-sm-4">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Rut</div>
+                </div>
+                <input class="form-control" type="text" (keyup)="filtro('rut')" name="filtro_rut"
+                    [(ngModel)]="filtro_rut" placeholder="Rut">
+            </div>
+
         </form>
     </div>
     <div class="card-body">
@@ -36,6 +44,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>#</th>
+                        <th>Rut</th>
                         <th>Nombres</th>
                         <th>Apellidos</th>
                         <th>Correo</th>
@@ -46,6 +55,7 @@
                     *ngFor="let item of clientes | slice : (page-1)*pageSize : (page-1) * pageSize + pageSize   ; let index = index ">
                     <tr>
                         <td>{{index + 1}}</td>
+                        <td>{{item.rut}}</td>
                         <td>{{item.nombres}}</td>
                         <td>{{item.apellidos}}</td>
                         <td>{{item.email}}</td>
@@ -69,7 +79,8 @@
         </div>
     </div>
     <div class="card-footer">
-        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="clientes.length">
+        <ngb-pagination [(page)]="page" [pageSize]="pageSize" [boundaryLinks]="true" [collectionSize]="clientes.length">
+
         </ngb-pagination>
 
     </div>
