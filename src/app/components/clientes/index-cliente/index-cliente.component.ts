@@ -14,8 +14,9 @@ export class IndexClienteComponent implements OnInit {
   public filtro_apellidos: Array<any> = [];
   public filtro_correo: Array<any> = [];
   public filtro_rut: Array<any> = [];
+
   public page = 1
-  public pageSize = 5;
+  public pageSize = 15;
   public token;
 
 

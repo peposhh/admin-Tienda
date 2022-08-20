@@ -4,3 +4,7 @@
 
  #para decifrar jwt
  npm i @auth0/angular-jwt
+
+
+
+ crtl + alt + l  para comentar a lo maldito

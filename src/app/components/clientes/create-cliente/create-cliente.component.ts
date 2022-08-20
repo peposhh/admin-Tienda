@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import izitoast from 'izitoast';
 import { AdminService } from 'src/app/service/admin.service';
 import { ClienteService } from 'src/app/service/cliente.service';
@@ -17,7 +18,10 @@ export class CreateClienteComponent implements OnInit {
   public token;
 
 
-  constructor(private _clienteService: ClienteService, private _adminService: AdminService) {
+  constructor(private _clienteService: ClienteService
+    , private _adminService: AdminService
+    , private _router: Router
+  ) {
     this.token = this._adminService.getToken();
   }
 
@@ -29,12 +33,31 @@ export class CreateClienteComponent implements OnInit {
 
 
     if (registroForm.valid) {
-      console.log("🚀 ~ file: create-cliente.component.ts ~ line 12 ~ CreateClienteComponent ~ cliente", this.cliente)
+
       this._clienteService.registro_cliente_admin(this.cliente, this.token).subscribe(
         {
           next: response => {
+            izitoast.show({
+              title: 'Registro exitoso',
+              class: 'text-success',
+              position: 'topRight',
+              color: '#fff',
+              titleColor: '#1DC74C',
+              message: 'se registro correctamente'
+            });
 
-            console.log(response);
+            this.cliente = {
+              genero: '',
+              nombres: '',
+              apellidos: '',
+              f_nacimiento: '',
+              telefono: '',
+              dni: '',
+              email: ''
+
+            }
+            this._router.navigateByUrl('panel/clientes')
+
           },
           error: err => {
             console.log(err.error.msg);
